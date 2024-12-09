@@ -12,9 +12,9 @@ fn count_matches(text: &str) -> i32 {
     ];
 
     let mut total = 0;
-    let lines: Vec<Vec<char>> = text.lines().map(|s| s.chars().collect()).collect();
+    let character_matrix: Vec<Vec<char>> = text.lines().map(|s| s.chars().collect()).collect();
 
-    for (i, line) in lines.iter().enumerate() {
+    for (i, line) in character_matrix.iter().enumerate() {
         for (j, char) in line.iter().enumerate() {
 
             if char != &'X' {
@@ -27,19 +27,19 @@ fn count_matches(text: &str) -> i32 {
 
                 if x_end < 0 || y_end < 0 {
                     continue;
-                } else if x_end >= lines.len() as i32 || y_end >= lines.len() as i32 {
+                } else if x_end >= character_matrix.len() as i32 || y_end >= character_matrix.len() as i32 {
                     continue;
-                } else if lines[y_end as usize][x_end as usize] != 'S' {
+                } else if character_matrix[y_end as usize][x_end as usize] != 'S' {
                     continue;
                 }
 
                 let (x_m, y_m) = walk(pos, direction, 1);
-                if lines[y_m as usize][x_m as usize] != 'M' {
+                if character_matrix[y_m as usize][x_m as usize] != 'M' {
                     continue;
                 }
 
                 let (x_a, y_a) = walk(pos, direction, 2);
-                if lines[y_a as usize][x_a as usize] != 'A' {
+                if character_matrix[y_a as usize][x_a as usize] != 'A' {
                     continue;
                 }
 
